@@ -20,28 +20,30 @@
                     }
                 }
 
+                // html 안에 script 를 따로 빼서 onSubmit() 메소드로 변경
+                onSubmit = (e) => {
+                    e.preventDefault();
+                    if(parseInt(this.state.value) === this.state.first * this.state.second) {
+                        this.setState({
+                            result: '정답',
+                            first: Math.ceil(Math.random() * 9),
+                            second: Math.ceil(Math.random() * 9),
+                            value: '',
+                        });
+                    } else {
+                        this.setState({
+                            result: '땡',
+                            value: '',
+                        });
+                    }
+                };
+
                 // 그리기
                 render() {
                     return (
                         <div>
                             <div>{this.state.first} * {this.state.second} = ?</div>
-                            <form onSubmit={
-                                (e) => {
-                                e.preventDefault();
-                                if(parseInt(this.state.value) === this.state.first * this.state.second) {
-                                    this.setState({
-                                        result: '정답',
-                                        first: Math.ceil(Math.random() * 9),
-                                        second: Math.ceil(Math.random() * 9),
-                                        value: '',
-                                    });
-                                } else {
-                                    this.setState({
-                                        result: '땡',
-                                        value: '',
-                                    });
-                                }
-                            }}>
+                            <form onSubmit={this.onSubmit}>
                                 <input type="number" vaule={this.state.value} onChange={ (e) => this.setState({ value: e.target.value }) } />
                                 <button>입력</button>
                             </form>
