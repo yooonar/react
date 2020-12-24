@@ -1,0 +1,39 @@
+<html>
+    <head>
+        <!--
+            개발: react.development.js
+            실제 배포: react.production.js
+        -->
+        <script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
+        <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+    </head>
+    <body>
+        <div id="root"></div>
+        <!--
+            웹팩 : 리액트를 html 이 실행할 수 있는 자바스크립트 파일로 만들어줌
+            소스로 불러오는 방법: <script src="like-button.js"></script>
+        -->
+        <script>
+            // React.createElement = html 태그 만들기
+            const e = React.createElement;
+
+            // 컴포넌트 만들기
+            class LikeButton extends React.Component {
+                // 생성자
+                constructor(props) {
+                    super(props);
+                }
+
+                // 화면 구현
+                render() {
+                    // 기본 형식
+                    return e('button', null, 'Like'); // <button>Like</button> 태그를 만들겠다. (아직 만들지 않음)
+                }
+            }
+        </script>
+    <script>
+        // #root 에 LikeButton 컴포넌트를 구현(호출)
+        ReactDOM.render(e(LikeButton), document.querySelector('#root'));
+    </script>
+    </body>
+</html>
