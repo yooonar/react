@@ -38,13 +38,17 @@
                     }
                 };
 
+                onChange = (e) => {
+                    this.setState({ value: e.target.value });
+                };
+
                 // 그리기
                 render() {
                     return (
                         <div>
                             <div>{this.state.first} * {this.state.second} = ?</div>
                             <form onSubmit={this.onSubmit}>
-                                <input type="number" vaule={this.state.value} onChange={ (e) => this.setState({ value: e.target.value }) } />
+                                <input type="number" vaule={this.state.value} onChange={ this.onChange } />
                                 <button>입력</button>
                             </form>
                             <div>{this.state.result}</div>
