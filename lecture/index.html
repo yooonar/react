@@ -6,6 +6,7 @@
         -->
         <script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
         <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+        <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
     </head>
     <body>
         <div id="root"></div>
@@ -13,7 +14,7 @@
             웹팩 : 리액트를 html 이 실행할 수 있는 자바스크립트 파일로 만들어줌
             소스로 불러오는 방법: <script src="like-button.js"></script>
         -->
-        <script>
+        <script type="text/babel">
             // React.createElement = html 태그 만들기
             const e = React.createElement;
 
@@ -36,16 +37,28 @@
 
                     // { } 안에 자바스크립트 속성을 넣어준다(카멜 표기법)
                     // this.setState({ liked: true }) = state 를 변경
+                    /*
+                    // 1. 복잡한 기존 문법
                     return e('button',
                         { onClick: () => { this.setState({ liked: true }) }, type: 'submit'},
                         this.state.liked === true ? 'Liked' : 'Like'
                     );
+                    */
+                    // 2. 간단한 문법(바벨을 이용해 자바스크립트에서 html 문법을 쓸 수 있도록 해줌) - JSX(JS + XML)
+                    return <button type="submit" onClick={() => { this.setState({ liked: true }) }}>
+                        { this.state.liked === true ? 'Liked' : 'Like' }
+                    </button>;
                 }
             }
         </script>
-    <script>
+    <script type="text/babel">
         // #root 에 LikeButton 컴포넌트를 구현(호출)
+        /*
+        // 1. 복잡한 기존 문법
         ReactDOM.render(e(LikeButton), document.querySelector('#root'));
+        */
+        // 2. 간단한 문법(바벨을 이용해 자바스크립트에서 html 문법을 쓸 수 있도록 해줌) - JSX(JS + XML)
+        ReactDOM.render(<LikeButton />, document.querySelector('#root'));
     </script>
     </body>
 </html>
