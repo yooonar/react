@@ -22,6 +22,11 @@
                 // 생성자
                 constructor(props) {
                     super(props);
+
+                    // state: 바뀔 여지가 있는 부분
+                    this.state = {
+                        liked: false,
+                    };
                 }
 
                 // 화면 구현
@@ -30,7 +35,11 @@
                     // return e('button', null, 'Like'); // <button>Like</button> 태그를 만들겠다. (아직 만들지 않음)
 
                     // { } 안에 자바스크립트 속성을 넣어준다(카멜 표기법)
-                    return e('button', { onClick: () => { console.log('clicked') }, type: 'submit'}, 'Like');
+                    // this.setState({ liked: true }) = state 를 변경
+                    return e('button',
+                        { onClick: () => { this.setState({ liked: true }) }, type: 'submit'},
+                        this.state.liked === true ? 'Liked' : 'Like'
+                    );
                 }
             }
         </script>
