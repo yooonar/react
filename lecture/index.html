@@ -27,7 +27,10 @@
                 // 화면 구현
                 render() {
                     // 기본 형식
-                    return e('button', null, 'Like'); // <button>Like</button> 태그를 만들겠다. (아직 만들지 않음)
+                    // return e('button', null, 'Like'); // <button>Like</button> 태그를 만들겠다. (아직 만들지 않음)
+
+                    // { } 안에 자바스크립트 속성을 넣어준다(카멜 표기법)
+                    return e('button', { onClick: () => { console.log('clicked') }, type: 'submit'}, 'Like');
                 }
             }
         </script>
